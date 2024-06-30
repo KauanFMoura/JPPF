@@ -9,33 +9,35 @@ import java.util.List;
 
 public class JPPFClientStart {
     public static void main(String[] args) {
-        // Configura o Log4j
+        // Configura Log
         BasicConfigurator.configure();
         
-        // Configura o cliente JPPF
+        // Cria Cliente
         try (JPPFClient jppfClient = new JPPFClient("jppf-client.properties")) {
 
-            // Cria um trabalho JPPF
             JPPFJob job = new JPPFJob();
-            job.setName("Meu Job"); // Define o nome do job
 
-            // Adiciona tarefas ao job
-            job.add(new MyTask());
-            job.add(new MyTask());
-
-            // Submete o job para o cliente JPPF
-            List<Task<?>> results = jppfClient.submitJob(job);
-            System.out.println("Tarefa enviada");
-
-            // Processa os resultados, se necessário
-            for (Task<?> task : results) {
-                if (task.getThrowable() != null) {
-                    System.out.println("Erro na tarefa: " + task.getThrowable().getMessage());
-                } else {
-                    String taskResult = (String) task.getResult();
-                    System.out.println("Resultado da Tarefa: " + taskResult);
-                }
+            long arraySize = 30_000_000L;
+            long chunkSize = arraySize / 3;
+            
+            // Cria os jobs (Tasks menores)
+            for (int i = 0; i < 3; i++) {
+                job.add(new ClientTask(i * chunkSize, chunkSize));
             }
+            
+            // Envia e espera os resultados
+            List<Task<?>> results = jppfClient.submitJob(job);
+            System.out.println("Tasks enviada");
+
+            // Processa resultados
+            long totalSum = 0;
+            for (Task<?> task : results) {
+                long taskResult = (Long) task.getResult();
+                totalSum += taskResult;
+                System.out.println("Resultado de Parte da Task: " + taskResult); 
+            }
+
+            System.out.println("Resultado da Task: " + totalSum);
 
         } catch (Exception e) {
             e.printStackTrace();
