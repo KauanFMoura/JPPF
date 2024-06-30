@@ -34,6 +34,7 @@ O componente `JPPFNode` representa um nó na rede JPPF, capaz de receber tarefas
 ## Arquivos de Configuração
 - `jppf-driver.properties`: Arquivo de configuração para o servidor JPPF.
 - `jppf-client.properties`: Arquivo de configuração para o cliente JPPF.
+- `jppf-node.properties`: Arquivo de configuração para o Nó JPPF.
 
 ## Notas Adicionais
 - Verifique se todas as dependências estão corretamente incluídas.
