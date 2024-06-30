@@ -19,17 +19,17 @@ O componente `JPPFClient` representa a aplicação do lado cliente responsável 
 
 #### Uso
 1. Verifique se o Java e o JPPF estão instalados.
-2. Modifique `JPPFClientExample.java` para configurar o cliente JPPF, incluindo a especificação dos detalhes de conexão com o servidor.
+2. Modifique `JPPFClientStart.java` para configurar o cliente JPPF, incluindo a especificação dos detalhes de conexão com o servidor.
 3. Personalize as tarefas (`MyTask.java`) conforme necessário e adicione-as a um `JPPFJob` para envio.
-4. Execute `JPPFClientExample.java` para conectar ao servidor JPPF e enviar as tarefas.
+4. Execute `JPPFClientStart.java` para conectar ao servidor JPPF e enviar as tarefas.
 
 ### JPPFNode (JPPFNode.java)
 O componente `JPPFNode` representa um nó na rede JPPF, capaz de receber tarefas do servidor, executá-las e retornar os resultados.
 
 #### Uso
 1. Verifique se o Java e o JPPF estão instalados.
-2. Modifique `JPPFNodeExample.java` para configurar as definições do nó, como os detalhes de conexão com o servidor.
-3. Execute `JPPFNodeExample.java` para iniciar o nó, que se conecta ao servidor especificado e aguarda tarefas.
+2. Modifique `JPPFNode.java` para configurar as definições do nó, como os detalhes de conexão com o servidor.
+3. Execute `JPPFNode.java` para iniciar o nó, que se conecta ao servidor especificado e aguarda tarefas.
 
 ## Arquivos de Configuração
 - `jppf-driver.properties`: Arquivo de configuração para o servidor JPPF.
